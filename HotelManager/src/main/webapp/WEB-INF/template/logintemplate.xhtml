@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+
+	<h:outputStylesheet name="css/cl.css" />
+	<h:outputStylesheet name="css/masterbrand.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputStylesheet name="css/template.css" />
+
+	<style type="text/css">
+.ui-selectonemenu-items {
+	background-color: white !important;
+}
+
+#perwidform .ui-password {
+	width: 145px;
+}
+
+#perwidform table {
+	table-layout: auto;
+}
+
+#perwidform table th,table td {
+	padding: 3px;
+}
+</style>
+	
+
+
+</h:head>
+
+<h:body>
+<div id="updateUserSessionDiv" style="display:none;">
+	<h:form id="updateUserSessionForm">
+	
+
+		</h:form>
+		</div>
+
+
+	<!--  <f:event listener="#{applicationManager.isValidUserLogin}" type="preRenderView" />-->
+	<h:form>
+		<div id="header" >
+
+			<a href="" class="logo"></a>
+			<div style="float: right; width: 600px;">
+				<div
+					style="float: right; margin-right: 31px; margin-top: 24px; text-transform: capitalize; color: #636466; font-family: Arial;">
+					welcome :
+					<h:outputText value="#{session.getAttribute('username')}" />
+				</div>
+				<ul class="nav" style="margin-top: 8px;">
+					
+                                    <li><span></span> <p:commandLink
+							action="Home.xhtml?faces-redirect=true" ajax="false" value="Home"
+							styleClass="ft-label" /></li>
+					<li><span></span> <p:commandLink
+							action="BookingRequest.xhtml?faces-redirect=true" ajax="false" value="Booking Request"
+							styleClass="ft-label" /></li>
+					<li><span></span> <p:commandLink action="ChangePassword.xhtml?faces-redirect=true"
+							value="Change Password" 
+							styleClass="ft-label" /></li>
+					
+					<li><span></span> <p:commandLink action="CreateUser.xhtml?faces-redirect=true"
+							value="Create Users" styleClass="ft-label"
+							 type="link"
+							rendered="#{sessionManagerBean.isadmin}" /></li>
+					<li><span></span> <p:commandLink action="ManageRates.xhtml?faces-redirect=true"
+							 value="Manage Booking Rates" rendered="#{sessionManagerBean.isadmin}"
+							styleClass="ft-label" /></li>
+							
+					<li><span></span> <p:commandLink action="#{loginBean.doLogout}"
+							value="Logout" ajax="false" styleClass="ft-label" /></li>
+							 
+				</ul>
+			</div>
+		</div>
+
+	</h:form>
+	 
+</h:body>
+
+
+
+</h:html>

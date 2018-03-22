@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ <title>Change Password</title>
+	<!--  <h:outputStylesheet name="/resources/css/cl.css"/>
+<h:outputStylesheet name="/resources/css/masterbrand.css"/>-->
+
+	<style type="text/css">
+tr {
+	vertical-align: top !important;
+}
+
+.ui-message-error-icon {
+	height: 17px;
+	width: 0px !important;
+}
+</style>
+	<script type="text/javascript">
+$(document).ready(function() {
+ var listItems = $(".nav li");
+listItems.each(function(idx, li) {
+  var product = $(li);
+ product.removeClass("active")
+ if(idx==3){
+product.addClass("active"); 
+}
+ 
+});
+  
+});
+</script>
+</h:head>
+<h:body>
+	<f:view>
+					<div id="wrapper">
+
+					<div class="outer-container">
+
+						<ui:insert name="header">
+							<ui:include src="/WEB-INF/template/logintemplate.xhtml" />
+						</ui:insert>
+					</div>
+
+
+
+
+
+					<div class="inner-container">
+
+						<br />
+						<br /> <br />
+						<br />
+						<div class="contant_box_top"></div>
+
+						<div class="contant_box">
+							<div class="contant_box_wrapper">
+								<h1>
+									Hotel Booking System <span
+										style="font-size: 12px; padding-left: 5px; padding-top: 5px;">(Add a Team Member Here.)</span>
+								</h1>
+
+
+
+								<h:form id="loginform">
+								
+								<p:message for="repassword" />
+
+									<h:panelGrid id="grid" columns="3" style="margin-bottom:10px;">
+
+
+
+										<h:outputLabel for="firstname" value="First Name: *" />
+										<p:inputText id="firstname" value="#{CuserBean.user.firstname}"
+											required="true" requiredMessage="first name is required." />
+										<p:message for="firstname" />
+
+										<h:outputLabel for="lastname" value="Last Name: *" />
+										<p:inputText id="lastname" value="#{CuserBean.user.lastname}"
+											required="true" requiredMessage="last name is required." />
+										<p:message for="lastname" />
+
+
+
+										<h:outputLabel for="username" value="User Name: *" />
+										<p:inputText id="username" value="#{CuserBean.user.username}"
+											required="true" requiredMessage="username is required."
+											binding="#{CuserBean.usernameMessage}" />
+										<p:message id="uname" for="username" />
+
+
+
+										<h:outputLabel for="password" value="Password: *" />
+										<p:password id="password" feedback="true" match="repassword"
+											value="#{CuserBean.user.password}" required="true"
+											requiredMessage="password is required." />
+										<p:message for="password" />
+
+
+										<h:outputLabel for="repassword" value="Retype Password: *" />
+										<p:password id="repassword" value="#{CuserBean.user.password}" binding="#{CuserBean.showResultMessage}"
+											required="true"
+											requiredMessage="retype password is required." />
+										
+										<h:outputLabel value=" " />
+
+
+										<h:outputLabel for="email" value="E-mail: *" />
+										<p:inputText id="email" value="#{CuserBean.user.email}" 
+											required="true" requiredMessage="email is required."
+											validatorMessage="invalid Email format."
+											binding="#{CuserBean.emailMessage}">
+											<f:validateRegex
+												pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+										</p:inputText>
+
+										<p:message for="email" />
+
+									</h:panelGrid>
+									<p:separator />
+
+									<h:panelGrid id="roleGrid" columns="2">
+										<h:outputLabel for="roletype" value="Role: *" />
+										<p:message for="customRadio" />
+									</h:panelGrid>
+
+									<p:outputPanel id="customPanel">
+
+										<p:selectOneRadio id="customRadio" value="#{CuserBean.user.roletype}"
+											layout="custom" required="true"
+											requiredMessage="Roletype is required.">
+											<br />
+
+											<f:selectItem itemLabel="Administrator"
+												itemValue="administrator" />
+											<br />
+											<f:selectItem itemLabel="Booking Clerk"
+												itemValue="bookingclerk" />
+
+										</p:selectOneRadio>
+
+										<h:panelGrid columns="3" columnClasses="topAligned">
+											<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+											<h:outputLabel for="opt1" value="Administrator"
+												style="font-weight:bold; font-size:13px;" />
+											<h:outputLabel style="vertical-align:top;"
+												value="Can perform all System tasks. Only this role can manage all users, rates management." />
+
+											<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+											<h:outputLabel for="opt2" value="Booking Clerk"
+												style="font-weight:bold; font-size:13px;" />
+											<h:outputLabel
+												value="Can post booking Request and receive payments." />
+										</h:panelGrid>
+									</p:outputPanel>
+
+
+
+									<div class="cta">
+										<h:panelGrid columns="6" cellpadding="5">
+											<p:commandButton value="Register" id="btnAll" process="@all"
+												update=":loginform" action="#{CuserBean.createMember()}" />
+										</h:panelGrid>
+									</div>
+
+								</h:form>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="contant_box_bot"></div>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</div>
+					<div class="footer">
+
+
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px; margin-right: 20px"
+							class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+
+
+
+						<div class="bottomBorder">&nbsp;</div>
+
+					</div>
+
+					<div class="footer-bottom" style="margin-left: -1px;"></div>
+					<div class="footer-copywrite" align="right">Copyright 2016
+						&copy;. All Rights Reserved.</div>
+				 
+		</div>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,88 @@
+.inner-container {
+margin: 0 auto;
+width: 1000px;
+height: auto;
+min-height: 350px;
+background: url("#{resource['images:background-container.png']}") repeat scroll 0 0 transparent;
+padding: 10px 10px 0px 10px;
+}
+
+.footer {
+text-align: center;
+clear: both;
+margin: 0 auto;
+width: 1000px;
+background: url("#{resource['images:background-container.png']}") repeat scroll 0 0 #E4E4E4;
+padding: 10px 10px;
+}
+
+.footer-bottom {
+text-align: center;
+clear: both;
+margin: 0 auto;
+width: 1000px;
+background: url("#{resource['images:footer_bg.png']}") repeat scroll 0 0 #E4E4E4;
+height: 20px;
+padding: 0px 11px;
+}
+
+.footer-copywrite {
+margin: 0px 0px 5px 0px;
+color: #666666;
+margin: 10px auto;
+width: 1000px;
+font-size: 11px;
+}
+div[Attributes Style] {
+text-align: -webkit-right;
+}
+
+element.style {
+clear: both;
+}
+
+body {
+display: block;
+margin: 8px;
+}
+
+.contant_box_top {
+width: 690px;
+height: 5px;
+margin: 0 auto 0 auto;
+background: url("#{resource['images:contant_box_top.png']}") no-repeat;
+}
+
+.contant_box_bot {
+width: 690px;
+height: 5px;
+margin: 0 auto 0 auto;
+background: url("#{resource['images:contant_box_bottom.png']}") no-repeat;
+}
+
+.contant_box {
+width: 680px;
+margin: 0 auto 0 auto;
+padding: 0px 5px 0px 5px;
+background: url("#{resource['images:contant_box_shadow.png']}") repeat-y;
+}
+
+.contant_box_wrapper {
+width: 660px;
+margin: 0 auto 0 auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #666666;
+
+
+line-height: 22px;
+padding: 20px 10px 15px 10px;
+background: url("#{resource['images:contant_box_bg.png']}") repeat-x;
+}
+
+.contant_box_wrapper h1 {
+color: #F79613;
+font-size: 24px;
+border-bottom: 1px dotted #999;
+padding-bottom: 15px;
+}

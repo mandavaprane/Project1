@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ <title>Book A Room</title>
+	<!--  <h:outputStylesheet name="/resources/css/cl.css"/>
+<h:outputStylesheet name="/resources/css/masterbrand.css"/>-->
+
+	<style type="text/css">
+tr {
+	vertical-align: top !important;
+}
+
+.ui-message-error-icon {
+	height: 17px;
+	width: 0px !important;
+}
+</style>
+	<script type="text/javascript">
+$(document).ready(function() {
+ var listItems = $(".nav li");
+listItems.each(function(idx, li) {
+  var product = $(li);
+ product.removeClass("active")
+ if(idx==0){
+product.addClass("active"); 
+}
+ 
+});
+  
+});
+</script>
+</h:head>
+<h:body>
+	<f:view>
+					<div id="wrapper">
+
+					<div class="outer-container">
+
+						<ui:insert name="header">
+							<ui:include src="/WEB-INF/template/logintemplate.xhtml" />
+						</ui:insert>
+					</div>
+
+
+
+
+
+					<div class="inner-container">
+
+						<br />
+						<br /> <br />
+						<br />
+						<div class="contant_box_top"></div>
+
+						<div class="contant_box">
+							<div class="contant_box_wrapper">
+								<h1>
+									Hotel Booking System <span
+										style="font-size: 12px; padding-left: 5px; padding-top: 5px;">(Sort Booking Request Here)</span>
+								</h1>
+
+
+
+								<h:form id="bookingViewForm">
+
+
+
+
+									<h:panelGrid id="grid" columns="5" style="margin-bottom:10px;">
+									
+									<p:outputLabel value="Sort By:"/>
+									
+                                                                        <p:selectOneMenu id="columnSortValue" value="#{listBean.sortColumnName}" >
+									<f:selectItem itemLabel="Order No" itemValue="orderno" />
+									<f:selectItem itemLabel="Customer Name" itemValue="customername" />
+									<f:selectItem itemLabel="No of Rooms" itemValue="noforoom" />
+									</p:selectOneMenu>
+									<p:outputLabel value="Sorting Manner:"/>
+									
+                                                                        <p:selectOneMenu id="columnSortManner" value="#{listBean.sortingRequest}">
+									<f:selectItem itemLabel="Ascending" itemValue="1" />
+									<f:selectItem itemLabel="Descending" itemValue="-1" />
+									
+									</p:selectOneMenu>
+									
+									<p:commandButton value="Sort Requests" id="btnAll" process="@all"
+                                                                                         update="hotelTable" action="#{listBean.sortList()}" />
+									
+
+									</h:panelGrid>
+									
+									<p:dataTable  id="hotelTable" var="hotelRequest" widgetVar="hotelTableWidget" value="#{listBean.hotelRequestList}" >
+									
+									<p:column headerText="Order No">
+									<h:outputText value="#{hotelRequest.request_id}" />
+									</p:column>
+									<p:column headerText="Customer Name">
+									<h:outputText value="#{hotelRequest.requesterName}" />
+									
+									</p:column>
+									<p:column headerText="Customer Email">
+									<h:outputText value="#{hotelRequest.requesterEmail}" />
+									
+									</p:column>
+									<p:column headerText="No of Rooms Booked">
+									<h:outputText value="#{hotelRequest.noOfRoom}" />
+									
+									</p:column>
+									
+									<p:column headerText="Booking Date">
+									<h:outputText value="#{hotelRequest.bookingDate}" >
+											<f:convertDateTime type="date"
+												pattern="MMM dd, yyyy hh:mm:ss a" timeZone="EST" />
+									</h:outputText>
+									
+									</p:column>
+									
+									<p:column headerText="Total Price">
+									<h:outputText value="#{hotelRequest.bookingRate}" />
+									
+									</p:column>
+									</p:dataTable>
+
+
+									
+								</h:form>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="contant_box_bot"></div>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</div>
+					<div class="footer">
+
+
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px; margin-right: 20px"
+							class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+
+
+
+						<div class="bottomBorder">&nbsp;</div>
+
+					</div>
+
+					<div class="footer-bottom" style="margin-left: -1px;"></div>
+					<div class="footer-copywrite" align="right">Copyright 2013
+						&copy;. All Rights Reserved.</div>
+				 
+		</div>
+	</f:view>
+</h:body>
+</html>

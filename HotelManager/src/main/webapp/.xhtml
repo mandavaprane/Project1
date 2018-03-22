@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Login</title>
+	<h:outputStylesheet name="css/template.css" />
+	<style type="text/css">
+tr {
+	width: auto!fixed;
+}
+</style>
+</h:head>
+
+<h:body>
+
+	<f:view>
+		 
+			<div id="wrapper">
+
+
+
+				 
+					<div class="outer-container">
+
+						<ui:insert name="header">
+							<ui:include src="/WEB-INF/template/default.xhtml" />
+						</ui:insert>
+					</div>
+
+
+
+
+
+					<div class="inner-container">
+
+						<br />
+						<br /> <br />
+						<br />
+						<div class="contant_box_top"></div>
+
+						<div class="contant_box">
+							<div class="contant_box_wrapper">
+								<h1>
+									Hotel Booking System <span
+										style="font-size: 12px; padding-left: 5px; padding-top: 5px;">(Having account? Please login.)</span>
+								</h1>
+
+								<h:form id="loginform">
+
+									<h:panelGrid id="msggrid" columns="3"
+										style="margin-bottom:10px;">
+										<f:facet name="header">
+											<p:messages id="msg" />
+										</f:facet>
+
+										<h:outputLabel for="logid" value="Login-id: "
+											style="font-weight:bold; font-size:14px;" />
+										<p:inputText id="logid" value="#{login.logid}" required="true"
+											requiredMessage="id or email is required." />
+										<a href="ForgotUsername.xhtml" class="ft-label"
+											style="color: #157991; decoration: none;">Forgot?</a>
+
+
+
+										<h:outputLabel for="logpass" value="Password: "
+											style="font-weight:bold;font-size:14px;" />
+										<p:password id="logpass" value="#{login.logpass}"
+											required="true" requiredMessage="password is required." />
+										<a href="ForgotPassword.xhtml" class="ft-label"
+											style="color: #157991; decoration: none;">Forgot?</a>
+
+
+									</h:panelGrid>
+
+
+									<div class="cta">
+										<p:commandButton value="Login" id="log" process="@all"
+											update="msggrid" action="#{login.doLogin}"  />
+									</div>
+
+								</h:form>
+
+
+							</div>
+						</div>
+
+
+						<div class="contant_box_bot"></div>
+					</div>
+					<div class="footer">
+
+
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px; margin-right: 20px"
+							class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+
+
+
+						<div class="bottomBorder">&nbsp;</div>
+
+					</div>
+
+					<div class="footer-bottom" style="margin-left: -1px;"></div>
+					<div class="footer-copywrite" align="right">Copyright 2016
+						&copy;. All Rights Reserved.</div>
+				 
+
+
+
+
+
+			</div>
+		 
+	</f:view>
+
+
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ <title>Book A Room</title>
+	<!--  <h:outputStylesheet name="/resources/css/cl.css"/>
+<h:outputStylesheet name="/resources/css/masterbrand.css"/>-->
+
+	<style type="text/css">
+tr {
+	vertical-align: top !important;
+}
+
+.ui-message-error-icon {
+	height: 17px;
+	width: 0px !important;
+}
+</style>
+	<script type="text/javascript">
+$(document).ready(function() {
+ var listItems = $(".nav li");
+listItems.each(function(idx, li) {
+  var product = $(li);
+ product.removeClass("active")
+ if(idx==1){
+product.addClass("active"); 
+}
+});
+  
+});
+</script>
+</h:head>
+<h:body>
+	<f:view>
+					<div id="wrapper">
+
+					<div class="outer-container">
+
+						<ui:insert name="header">
+							<ui:include src="/WEB-INF/template/default.xhtml" />
+						</ui:insert>
+					</div>
+
+
+
+
+
+					<div class="inner-container">
+
+						<br />
+						<br /> <br />
+						<br />
+						<div class="contant_box_top"></div>
+
+						<div class="contant_box">
+							<div class="contant_box_wrapper">
+								<h1>
+									Hotel Booking System <span
+										style="font-size: 12px; padding-left: 5px; padding-top: 5px;">(Book Your Room Here)</span>
+								</h1>
+
+
+
+								<h:form id="bookingForm">
+								
+								
+								<p:message for="specialDecoration" />
+                                                                
+                                                                
+                                                                <p:growl  id="growlCustomerName"   showDetail="true" sticky="true" autoUpdate="true"/>
+
+
+
+
+									<h:panelGrid id="grid" columns="3" style="margin-bottom:10px;">
+
+
+
+										<h:outputLabel for="customername" value="Name: *" />
+										<p:inputText id="customername" value="#{bookingBean.bookingRequest.requesterName}"
+											required="true" requiredMessage="Name is required." />
+										<p:message for="email" />
+                                                                                
+
+									<h:outputLabel for="email" value="E-mail: *" />
+										<p:inputText id="email" value="#{bookingBean.bookingRequest.requesterEmail}"
+											required="true" requiredMessage="email is required."
+											validatorMessage="invalid Email format.">
+											<f:validateRegex
+												pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+												
+									
+								</p:inputText>
+
+										<p:message for="email" />
+
+										<h:outputLabel for="address" value="Address: *" />
+										<p:inputTextarea id="address" value="#{bookingBean.bookingRequest.custumerAddress}" rows="3" cols="23"
+											required="true" requiredMessage="Address is required." />
+										<p:message id="uname" for="address" />
+
+
+
+										<h:outputLabel for="roomType" value="Room Type: *" />
+											<p:selectOneMenu value="#{bookingBean.roomType}" id="roomType" style="width:145px;" panelStyle="width:145px;" required="true" requiredMessage="Room Type is required.">
+											<p:ajax process="@this" update="bookingRateBlock" event="change"	listener="#{bookingBean.updateBookingCost()}" />
+											<f:selectItem itemLabel="Single Bed" itemValue="1"/>
+											<f:selectItem itemLabel="Doulbe Bed" itemValue="2"/>
+											</p:selectOneMenu>
+										<p:message for="roomType" />
+										
+										<h:outputLabel for="roomCount" value="No of Room: *" />
+											<p:selectOneMenu style="width:145px;" panelStyle="width:145px;" value="#{bookingBean.bookingRequest.noOfRoom}" id="roomCount" required="true" requiredMessage="Should provide How many Rooms you need to book.">
+											<p:ajax process="@this" update="bookingRateBlock" event="change"	listener="#{bookingBean.updateBookingCost()}" />
+											<f:selectItem itemLabel="1" itemValue="1"/>
+											<f:selectItem itemLabel="2" itemValue="2"/>
+											<f:selectItem itemLabel="3" itemValue="3"/>
+											<f:selectItem itemLabel="4" itemValue="4"/>
+											<f:selectItem itemLabel="5" itemValue="5"/>
+											<f:selectItem itemLabel="6" itemValue="6"/>
+											<f:selectItem itemLabel="7" itemValue="7"/>
+											<f:selectItem itemLabel="8" itemValue="8"/>
+											<f:selectItem itemLabel="9" itemValue="9"/>
+											
+											</p:selectOneMenu>
+										<p:message for="roomCount" />
+
+
+										<h:outputLabel for="foodCategory" value="Food Category: *" />
+										<p:selectOneMenu style="width:145px;" panelStyle="width:145px;" value="#{bookingBean.bookingRequest.foodType}" id="foodCategory">
+											<f:selectItem itemLabel="Veg" itemValue="vegetarian"/>
+											<f:selectItem itemLabel="Non-Veg" itemValue="nonvegetarian"/>
+											</p:selectOneMenu>
+										<p:message for="foodCategory" />
+										
+										<h:outputLabel for="bookingDate" value="Booking Date: *" />
+										<p:calendar id="bookingDate" readonlyInput="true" required="true" requiredMessage="Select a booking Date." value="#{bookingBean.bookingRequest.bookingDate}"
+										pattern="dd/MM/yyyy"	mindate="#{bookingBean.bookingRequest.postingDate}"	/>
+										<p:message for="bookingDate" />
+										
+										<h:outputLabel for="specialDecoration" value="Specialize Room: *" />
+										<p:selectManyCheckbox layout="grid" columns="1" value="#{bookingBean.speciality}" id="specialDecoration" binding="#{bookingBean.successMessage}">
+										<p:ajax process="@this" update="bookingRateBlock" listener="#{bookingBean.updateBookingCost()}" />
+										<f:selectItem itemLabel="Add Flower Decoration   $ #{RateManagerBean.flowerDecorationRate}" itemValue="1"/> 
+										<f:selectItem itemLabel="Add Special Curtains    $ #{RateManagerBean.curtainDecorationRate}"  itemValue="2"/>  
+										<f:selectItem itemLabel="Change Wall Colors     $ #{RateManagerBean.colorDecorationRate}" itemValue="3"/> 
+										<f:selectItem itemLabel="Add Air Condition Facility     $ #{RateManagerBean.acDecorationRate}" itemValue="4"/> 
+										
+										</p:selectManyCheckbox>
+
+										<p:message for="foodCategory"  />
+										
+										<h:outputLabel  value="Your Total Booking Cost: " />
+										<h:outputLabel  id="bookingRateBlock" value="#{bookingBean.bookingRequest.bookingRate}" />
+										
+
+									</h:panelGrid>
+									<p:separator />
+
+
+									<div class="cta">
+										<h:panelGrid columns="6" cellpadding="5">
+											<p:commandButton value="Confirm Your Booking" id="btnAll" process="@all"
+                                                                                                         update=":bookingForm"  action="#{bookingBean.bookRoom()}" />
+                                                                                        
+                                                                                           
+                                                                                      
+										</h:panelGrid>
+									</div>
+
+								</h:form>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="contant_box_bot"></div>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</div>
+					<div class="footer">
+
+
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px; margin-right: 20px"
+							class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+
+
+
+						<div class="bottomBorder">&nbsp;</div>
+
+					</div>
+
+					<div class="footer-bottom" style="margin-left: -1px;"></div>
+					<div class="footer-copywrite" align="right">Copyright 2016
+						&copy;. All Rights Reserved.</div>
+				 
+		</div>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ <title>Change Password</title>
+	<!--  <h:outputStylesheet name="/resources/css/cl.css"/>
+<h:outputStylesheet name="/resources/css/masterbrand.css"/>-->
+
+	<style type="text/css">
+tr {
+	vertical-align: top !important;
+}
+
+.ui-message-error-icon {
+	height: 17px;
+	width: 0px !important;
+}
+</style>
+	<script type="text/javascript">
+$(document).ready(function() {
+ var listItems = $(".nav li");
+listItems.each(function(idx, li) {
+  var product = $(li);
+ product.removeClass("active")
+ if(idx==4){
+product.addClass("active"); 
+}
+ 
+});
+  
+});
+</script>
+</h:head>
+<h:body>
+	<f:view>
+					<div id="wrapper">
+
+					<div class="outer-container">
+
+						<ui:insert name="header">
+							<ui:include src="/WEB-INF/template/logintemplate.xhtml" />
+						</ui:insert>
+					</div>
+
+
+
+
+
+					<div class="inner-container">
+
+						<br />
+						<br /> <br />
+						<br />
+						<div class="contant_box_top"></div>
+
+						<div class="contant_box">
+							<div class="contant_box_wrapper">
+								<h1>
+									Hotel Booking System <span
+										style="font-size: 12px; padding-left: 5px; padding-top: 5px;">(Manage Room Rates Here.)</span>
+								</h1>
+
+
+
+								<h:form id="manageRateForm">
+
+
+								
+
+									<h:panelGrid id="grid" columns="2" style="margin-bottom:10px;">
+							
+							 <h:outputLabel for="simpleRoomRate" value="Single Bed Room Rates:" />
+						        <p:inplace id="simpleRoomRate" editor="true">
+						            <p:inputText value="#{RateManagerBean.simpleRoomRate}" required="true" label="text" />
+						        </p:inplace>
+						        
+						        
+						        <h:outputLabel for="doubleRoomRate" value="Double Bed Room Rates:" />
+						        <p:inplace id="doubleRoomRate" editor="true">
+						            <p:inputText value="#{RateManagerBean.doubleBedRoomRate}" required="true" label="text" />
+						        </p:inplace>
+						        
+						         <h:outputLabel for="AcFacilityRate" value="Ac Facility Rate:" />
+						        <p:inplace id="AcFacilityRate" editor="true">
+						            <p:inputText value="#{RateManagerBean.acDecorationRate}" required="true" label="text" />
+						        </p:inplace>
+						        
+						         <h:outputLabel for="flowerDecorationRate" value="Flower Decoration Charges:" />
+						        <p:inplace id="flowerDecorationRate" editor="true">
+						            <p:inputText value="#{RateManagerBean.flowerDecorationRate}" required="true" label="text" />
+						        </p:inplace>
+ 		
+ 								<h:outputLabel for="splCurtainCharges" value="SpecialCurtain Decoration Charges:" />
+						        <p:inplace id="splCurtainCharges" editor="true">
+						            <p:inputText value="#{RateManagerBean.curtainDecorationRate}" required="true" label="text" />
+						        </p:inplace>
+						        
+						        <h:outputLabel for="colorDecoration" value="Room Color Alteration Charges:" />
+						        <p:inplace id="colorDecoration" editor="true">
+						            <p:inputText value="#{RateManagerBean.colorDecorationRate}" required="true" label="text" />
+						        </p:inplace>
+ 		
+ 		
+ 								<h:outputLabel for="colorDecoration" value="Taxi Pickup Charges:" />
+						        <p:inplace id="taxiServiceCharges" editor="true">
+						            <p:inputText value="#{RateManagerBean.taxiPickUpRate}" required="true" label="text" />
+						        </p:inplace>
+									
+									
+									</h:panelGrid>
+									
+								</h:form>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="contant_box_bot"></div>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+					</div>
+					<div class="footer">
+
+
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px" class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+
+							</ul>
+						</div>
+
+						<div style="float: left; width: 190px; margin-right: 20px"
+							class="afooterLine">
+							<ul style="list-style-type: none; text-align: left">
+
+							</ul>
+						</div>
+
+
+
+
+						<div class="bottomBorder">&nbsp;</div>
+
+					</div>
+
+					<div class="footer-bottom" style="margin-left: -1px;"></div>
+					<div class="footer-copywrite" align="right">Copyright 2016
+						&copy;. All Rights Reserved.</div>
+				 
+		</div>
+	</f:view>
+</h:body>
+</html>
